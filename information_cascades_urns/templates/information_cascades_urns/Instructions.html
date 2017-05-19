@@ -1,0 +1,28 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+    <h3>Instructions:</h3>
+    <p> You and other participants stand in a line in front of an urn. The urn contains three balls.</p>
+    <p> Either it's urn A, containing two red balls and one blue ball:
+        <ul TYPE="None", style="padding-left:60px">
+            <li>A: <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
+                <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
+                <img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>
+            </li>
+        </ul>
+        Or it's urn B, containing one red ball and two blue balls:
+        <ul TYPE="None", style="padding-left:60px">
+            <li>B: <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
+                <img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>
+                <img src="{% static "information_cascades_urns/bullet_blue.png" %}"/></li>
+        </ul>
+    <strong>By drawing only one ball you have to guess which urn you are standing in front of</strong>.
+    </p>
+    <p>
+        Your payoff will be:
+        <br>
+    <ul>
+        <li>{{ Constants.endowment }} as participation fee</li>
+        <li>{{ Constants.bonus }} if you make the correct guess</li>
+    </p>
+</div>

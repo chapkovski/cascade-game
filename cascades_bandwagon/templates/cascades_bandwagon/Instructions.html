@@ -1,0 +1,33 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+    <h3>Instructions:</h3>
+    <p> You and other participants stand in a line in front of an urn which contains four balls.</p>
+    <p> Either it's urn A, containing two red balls, one blue ball and one black ball:
+        <ul TYPE="None", style="padding-left:60px">
+            <li>A: <img src="{% static "cascades_bandwagon/bullet_red.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_red.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_blue.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_black.png" %}"/>
+            </li>
+        </ul>
+        Or it's urn B, containing one red ball, two blue balls and one black ball:
+        <ul TYPE="None", style="padding-left:60px">
+            <li>B: <img src="{% static "cascades_bandwagon/bullet_red.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_blue.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_blue.png" %}"/>
+                <img src="{% static "cascades_bandwagon/bullet_black.png" %}"/>
+            </li>
+        </ul>
+
+    <strong>By drawing only one ball you have to guess which urn you are standing in front of.</strong>
+    </p>
+    <p>
+        Your payoff will be:
+        <br>
+    <ul TYPE="None"><li>1 point for the correct guess,</li>
+        <li>-1 points for the wrong guess </li>
+        <li>0 points for choosing "I don't know".</li>
+    </ul>
+    </p>
+</div>

@@ -1,0 +1,44 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results after {{ subsession.round_number }} rounds (of {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+
+    <table class="table">
+        <tr>
+            <th>Participant</th>
+            <th>ball drawn</th>
+            <th>guessed urn</th>
+            <th>points</th>
+        </tr>
+        {% for p in player_in_all_rounds %}
+            <tr>
+                <td>{{ p.round_number }}. participant</td>
+                <td>
+                    {% if p.current_ball == 'red' %}<img src="{% static "cascades_bandwagon/bullet_red.png" %}"/>
+                    {% elif p.current_ball == 'blue' %}<img src="{% static "cascades_bandwagon/bullet_blue.png" %}"/>
+                    {% else %}<img src="{% static "cascades_bandwagon/bullet_black.png" %}"/>
+                    {% endif %}
+                </td>
+                <td>{{ p.choice_of_urn }}</td>
+                <td>{{ p.payoff }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p>
+        You {% if player.choice_of_urn == player.storyline %} won. {% else %} lost. {% endif %}
+        The urn everybody was drawing from was urn {{ player.storyline }}.
+    </p>
+    <p>
+        Your payoff is {{ player.payoff }}. Your group's total payoff is {{ total_performance }}.
+    </p>
+
+
+    {% next_button %}
+{% endblock %}
+
+
