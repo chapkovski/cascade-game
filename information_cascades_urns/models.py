@@ -30,7 +30,7 @@ class Subsession(BaseSubsession):
                 p.current_ball = random.choice(Constants.urn_A)
             else:
                 p.current_ball = random.choice(Constants.urn_B)
-            print('#####', p.id_in_subsession, self.storyline, p.current_ball)
+            #print('#####', p.id_in_subsession, self.storyline, p.current_ball)
 
 class Group(BaseGroup):
     ...

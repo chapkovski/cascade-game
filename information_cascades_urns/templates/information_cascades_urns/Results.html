@@ -14,18 +14,18 @@
             <th>guessed urn</th>
             <th>bonus</th>
         </tr>
-        {% for p in player_in_all_rounds %}
-            <tr>
-                <td>{{ forloop.counter }}. participant</td>
-                <td>
-                    {% if p.current_ball == 'red' %}<img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
-                    {% elif p.current_ball == 'blue' %}<img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>
-                    {% else %}<img src="{% static "information_cascades_urns/bullet_black.png" %}"/>
-                    {% endif %}
-                </td>
-                <td>{{ p.choice_of_urn }}</td>
-                <td>{{ p.payoff }}</td>
-            </tr>
+        {% for p in previous_players %}
+        <tr>
+            <td> {{ p.decision_order }}. participant </td>
+            <td>
+                {% if p.current_ball == 'red' %}<img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
+                {% elif p.current_ball == 'blue' %}<img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>
+                {% else %}<img src="{% static "information_cascades_urns/bullet_black.png" %}"/>
+                {% endif %}
+            </td>
+            <td>{{ p.choice_of_urn }}</td>
+            <td>{{ p.payoff }}</td>
+        </tr>
         {% endfor %}
     </table>
 
