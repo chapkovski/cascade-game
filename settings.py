@@ -141,7 +141,7 @@ SESSION_CONFIGS = [
     {
         'name': 'information_cascades_urns',
         'display_name': "Cascade Game",
-        'num_demo_participants': 3,
+        'num_demo_participants': 100,
         'app_sequence': ['information_cascades_urns'],
     },
     {

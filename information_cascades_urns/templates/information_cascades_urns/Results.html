@@ -16,7 +16,7 @@
         </tr>
         {% for p in player_in_all_rounds %}
             <tr>
-                <td>{{ p.round_number }}. participant</td>
+                <td>{{ forloop.counter }}. participant</td>
                 <td>
                     {% if p.current_ball == 'red' %}<img src="{% static "information_cascades_urns/bullet_red.png" %}"/>
                     {% elif p.current_ball == 'blue' %}<img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>
@@ -42,5 +42,3 @@
 
     {% next_button %}
 {% endblock %}
-
-

@@ -4,8 +4,8 @@
 {% block content %}
     {% include Constants.instructions_template %}
     <p>
-        You are number {{ subsession.round_number }} in the line.
-    </p>
+        You are number {{ cur_num }} in the line.
+    </p>  {% if cur_num > 1 %}
     <p> Previous participants have drawn a ball from this urn.
         You don't know which color their ball had, but after seeing the ball they threw
         it back into the urn and guessed the following:
@@ -18,9 +18,9 @@
             <th>guessed urn</th>
             <th>points</th>
         </tr>
-        {% for p in player_in_previous_rounds %}
+        {% for p in previous_players %}
             <tr>
-                <td> {{ p.round_number }}. participant </td>
+                <td> {{ forloop.counter }}. participant </td>
                 <td> (?) </td>
                 <td> {{ p.choice_of_urn }} </td>
                 <td> (?) </td>
@@ -29,7 +29,7 @@
     </table>
 
     <p>
-        Now it's your turn and you draw a
+        Now it's your turn and you {% else %} You {% endif%} draw a
         {% if player.current_ball == 'red' %}
             <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>ball.
         {% else %}
@@ -42,6 +42,3 @@
     {%  next_button %}
 
 {% endblock %}
-
-
-
