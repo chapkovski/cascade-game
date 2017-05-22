@@ -36,6 +36,7 @@ class Group(BaseGroup):
     ...
 
 class Player(BasePlayer):
+    decision_order = models.IntegerField(initial=10^10)
     current_ball = models.CharField()                   # the color of the ball a player will draw
     choice_of_urn = models.CharField(                   # the guess by the player
         choices=['A', 'B'],
