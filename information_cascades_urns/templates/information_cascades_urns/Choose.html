@@ -6,7 +6,7 @@
     <p>
         You are number {{ num_in_line }} in the line.
     </p>
-    {% if cur_num > 1 %}
+    {% if num_in_line > 1 %}
         <p> Previous participants have drawn a ball from this urn.
             You don't know which color their ball had, but after seeing the ball they threw
             it back into the urn and guessed the following:
@@ -21,7 +21,7 @@
         </tr>
             {% for p in previous_players %}
             <tr>
-                <td> {{ forloop.counter }}. participant </td>
+                <td> {{ p.decision_order }}. participant </td>
                 <td> (?) </td>
                 <td> {{ p.choice_of_urn }} </td>
                 <td> (?) </td>
