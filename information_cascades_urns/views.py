@@ -29,6 +29,7 @@ class Results(Page):
         previous_players = [p for p
                             in self.subsession.get_players()
                             if p.choice_of_urn]
+
         return {
             'total_performance': self.player.payoff + Constants.endowment,
             'player_in_all_rounds': previous_players,
