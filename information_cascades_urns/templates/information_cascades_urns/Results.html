@@ -12,7 +12,7 @@
             <th>Participant</th>
             <th>ball drawn</th>
             <th>guessed urn</th>
-            <th>points</th>
+            <th>bonus</th>
         </tr>
         {% for p in player_in_all_rounds %}
             <tr>
@@ -30,8 +30,8 @@
     </table>
 
     <p>
-        You were {% if player.choice_of_urn == group.storyline %} correct. {% else %} wrong. {% endif %}
-        The urn everybody was drawing from was urn {{ group.storyline }}.
+        You were {% if player.choice_of_urn == subsession.storyline %} correct. {% else %} wrong. {% endif %}
+        The urn everybody was drawing from was urn {{ subsession.storyline }}.
     </p>
     <p>
         Your bonus is {{ player.payoff }}. Your total payoff is {{ total_performance }}.

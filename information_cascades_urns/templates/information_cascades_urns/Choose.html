@@ -5,40 +5,46 @@
     {% include Constants.instructions_template %}
     <p>
         You are number {{ cur_num }} in the line.
-    </p>  {% if cur_num > 1 %}
-    <p> Previous participants have drawn a ball from this urn.
-        You don't know which color their ball had, but after seeing the ball they threw
-        it back into the urn and guessed the following:
     </p>
+    {% if cur_num > 1 %}
+        <p> Previous participants have drawn a ball from this urn.
+            You don't know which color their ball had, but after seeing the ball they threw
+            it back into the urn and guessed the following:
+        </p>
 
-    <table class="table">
+        <table class="table">
         <tr>
             <th>Participant</th>
             <th>ball drawn</th>
             <th>guessed urn</th>
             <th>points</th>
         </tr>
-        {% for p in previous_players %}
+            {% for p in previous_players %}
             <tr>
                 <td> {{ forloop.counter }}. participant </td>
                 <td> (?) </td>
                 <td> {{ p.choice_of_urn }} </td>
                 <td> (?) </td>
             </tr>
-        {% endfor %}
-    </table>
+            {% endfor %}
+        </table>
 
-    <p>
-        Now it's your turn and you {% else %} You {% endif%} draw a
-        {% if player.current_ball == 'red' %}
-            <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>ball.
-        {% else %}
-            <img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>ball.
-        {% endif%}
-        You have to guess: Are you standing in front of Urn A or Urn B?
+        <p>
+            Now it's your turn and you
+    {% else %}
+        You
+    {% endif%}
+
+    draw a
+    {% if player.current_ball == 'red' %}
+        <img src="{% static "information_cascades_urns/bullet_red.png" %}"/>ball.
+    {% else %}
+        <img src="{% static "information_cascades_urns/bullet_blue.png" %}"/>ball.
+    {% endif%}
+
+    You have to guess: Are you standing in front of Urn A or Urn B?
     </p>
-        {% formfield player.choice_of_urn with label=None%}
-
+    {% formfield player.choice_of_urn with label=None%}
     {%  next_button %}
 
 {% endblock %}
