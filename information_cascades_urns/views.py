@@ -22,6 +22,7 @@ class Choose(Page):
 
         return {
             'previous_players': previous_players,
+            'num_in_line': len(previous_players)+1
         }
 
     def before_next_page(self):
