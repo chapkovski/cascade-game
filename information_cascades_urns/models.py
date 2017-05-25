@@ -22,7 +22,8 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     storyline = models.CharField()
-    n_done = models.IntegerField()
+    room_busy = models.BooleanField(initial=False)
+
     def before_session_starts(self):
         self.storyline = random.choice(Constants.urns)
         for p in self.get_players():
@@ -30,7 +31,7 @@ class Subsession(BaseSubsession):
                 p.current_ball = random.choice(Constants.urn_A)
             else:
                 p.current_ball = random.choice(Constants.urn_B)
-            #print('#####', p.id_in_subsession, self.storyline, p.current_ball)
+
 
 class Group(BaseGroup):
     ...

@@ -1,4 +1,4 @@
-{% extends "global/Base.html" %}
+{% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
 {% block content %}
@@ -47,4 +47,13 @@
     {% formfield player.choice_of_urn with label=None%}
     {%  next_button %}
 
+{% endblock %}
+
+
+{% block styles %}
+  <style type="text/css">
+      div#otree-timeout {
+          display: none!important;
+    }
+</style>
 {% endblock %}
