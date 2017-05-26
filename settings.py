@@ -144,12 +144,6 @@ SESSION_CONFIGS = [
         'num_demo_participants': 100,
         'app_sequence': ['information_cascades_urns'],
     },
-    {
-        'name': 'cascades_bandwagon',
-        'display_name': "Cascade With Bandwagon Effect",
-        'num_demo_participants': 4,
-        'app_sequence': ['cascades_bandwagon'],
-    },
 ]
 
 # anything you put after the below line will override
