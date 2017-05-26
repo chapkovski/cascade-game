@@ -1,7 +1,7 @@
 # Information cascade game in oTree
 
 The experiment is designed along the same line as the classic infomration cascade
-experiment by [Anderson and Holt (2008)](#myfootnote1).
+experiment by [Anderson and Holt (2008)](#fn1).
 See a general description of what the information cascade in [this wiki article](https://en.wikipedia.org/wiki/Information_cascade).
 
 The main feature of any cascade game is that the decisions are taken sequentially.
