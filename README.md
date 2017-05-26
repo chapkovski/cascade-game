@@ -35,12 +35,12 @@ run a full-scale online experiment using it, you should have two things in mind.
 
      However if in those milliseconds (or even seconds if connection is slow) between receiving a signal and being forwarded from the Waiting Room to the Choose room the guy leaves the experiment (or his connection is lost), then all the rest of those poor things waiting in the Waiting Room are stuck there for good. If you'd like to
      keep your mTurk reputation high, it is crucial to guarantee that this never happens.
-     
+
     Thus, we need a background process that would check at the server side every n
     seconds that the Choose room is not empty, and if it is empty,
     it will pick someone from the waiting room and forward him there.
     One of the way to do it is by using any cronjob packages available for Django, like
-    Celery or Huey. We personally used [Django-background-tasks](http://django-background-tasks.readthedocs.io/).
+    Celery or Huey. 
 
 2. Second issue is really small and can be ignored, but still it's nice to have it in mind. If someone would really like to avoid waiting in the Waiting room, he or she can open now a Javascript console (available in most of modern browsers) and can type in there `$('.form').submit();`. and he will be forwarded to the decision page even if the Choose room is blocked. There will be many who would like to do it, but still it makes sense to block this kind of behaviour.
 
