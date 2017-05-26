@@ -14,9 +14,9 @@ class WaitingRoom(Page):
 
 class Choose(Page):
     form_model = models.Player
-    form_fields = ['choice_of_urn'] 
-    timeout_seconds = 60
-    timeout_submission = {choice_of_urn: choice(['A', 'B'])}
+    form_fields = ['choice_of_urn']
+    timeout_seconds = 20
+    timeout_submission = {'choice_of_urn': choice(['A', 'B'])}
 
     def is_displayed(self):
         self.subsession.room_busy = True
