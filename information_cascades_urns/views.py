@@ -42,7 +42,13 @@ class Choose(Page):
         channel_layer = get_channel_layer()
         ch_group_list = channel_layer.group_channels(channel_name)
         if len(ch_group_list) > 0:
-            curchname = next(iter(ch_group_list.keys()))
+            if isinstance(ch_group_list, list):
+                curchname = ch_group_list[0]
+            elif isinstance(x, dict):
+                curname = next(iter(ch_group_list.keys()))
+            else:
+                return None
+
             mychannel = channels.Channel(curchname)
             mychannel.send( {'text': json.dumps(
                     {'status': 'ready'})}
