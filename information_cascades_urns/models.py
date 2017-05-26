@@ -4,7 +4,7 @@ from otree.api import (
 )
 import random
 
-author = 'Robin Engelhardt'
+author = 'Robin Engelhardt, Philipp Chapkovski'
 doc = """
 Information Cascades with urns
 """

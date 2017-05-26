@@ -5,7 +5,7 @@ import json
 from channels.asgi import get_channel_layer
 from .consumers import get_group_name
 import channels
-
+from random import choice
 
 class WaitingRoom(Page):
     def is_displayed(self):
@@ -13,8 +13,10 @@ class WaitingRoom(Page):
 
 
 class Choose(Page):
-    form_model = models.Player          # setting a form model for current player
-    form_fields = ['choice_of_urn']     # setting a form field to fill out
+    form_model = models.Player
+    form_fields = ['choice_of_urn'] 
+    timeout_seconds = 60
+    timeout_submission = {choice_of_urn: choice(['A', 'B'])}
 
     def is_displayed(self):
         self.subsession.room_busy = True
