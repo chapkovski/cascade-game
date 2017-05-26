@@ -44,7 +44,7 @@ class Choose(Page):
         if len(ch_group_list) > 0:
             if isinstance(ch_group_list, list):
                 curchname = ch_group_list[0]
-            elif isinstance(x, dict):
+            elif isinstance(ch_group_list, dict):
                 curname = next(iter(ch_group_list.keys()))
             else:
                 return None
