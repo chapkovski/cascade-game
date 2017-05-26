@@ -35,7 +35,6 @@ run a full-scale online experiment using it, you should have two things in mind.
 
      However if in those milliseconds (or even seconds if connection is slow) between receiving a signal and being forwarded from the Waiting Room to the Choose room the guy leaves the experiment (or his connection is lost), then all the rest of those poor things waiting in the Waiting Room are stuck there for good. If you'd like to
      keep your mTurk reputation high, it is crucial to guarantee that this never happens.
-
     Thus, we need a background process that would check at the server side every _n_
     seconds that the Choose room is not empty, and if it is empty,
     it will pick someone from the waiting room and forward him there.
