@@ -1,31 +1,33 @@
 <script>
-window.onload = function() {
-  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-  var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/first_wp/{{subsession.id}},{{index_in_pages}}");
+    window.onload = function () {
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/first_wp/{{subsession.id}},{{index_in_pages}}");
 
-  // Handle any errors that occur.
-  wpsocket.onerror = function(error) {
-    console.log('WebSocket Error: ' + error);
-  };
+        // Handle any errors that occur.
+        wpsocket.onerror = function (error) {
+            console.log('WebSocket Error: ' + error);
+        };
 
-  // Show a connected message when the WebSocket is opened.
-  wpsocket.onopen = function(event) {
-    console.log('connected to oTree');
-  };
-
-
-  // Handle messages sent by the server.
-  wpsocket.onmessage = function(event) {
-    var obj = jQuery.parseJSON(event.data);
-    console.log(obj.status)
-    if (obj.status=='ready') {$('.form').submit()}
-  };
+        // Show a connected message when the WebSocket is opened.
+        wpsocket.onopen = function (event) {
+            console.log('connected to oTree');
+        };
 
 
-  // Show a disconnected message when the WebSocket is closed.
-  wpsocket.onclose = function(event) {
-    console.log('disconnected from oTree');
-  };
-};
+        // Handle messages sent by the server.
+        wpsocket.onmessage = function (event) {
+            var obj = jQuery.parseJSON(event.data);
+            console.log(obj.status)
+            if (obj.status == 'ready') {
+                $('.form').submit()
+            }
+        };
+
+
+        // Show a disconnected message when the WebSocket is closed.
+        wpsocket.onclose = function (event) {
+            console.log('disconnected from oTree');
+        };
+    };
 
 </script>

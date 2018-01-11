@@ -1,19 +1,130 @@
 {% extends 'otree/WaitPage.html' %}
 {% load staticfiles otree_tags %}
 {% block title %}Please wait!{% endblock %}
-{% block styles %}
 
-{% endblock %}
 {% block content %}
 
     {{ body_text }}
-    <form action="" method="post" role="form" class="form">
-      {% csrf_token %}
+    <div class="waiting_block">
+        <p>How long have you already wait: <span class="label label-success timers"
+                                                 id="sec_spent_span"></span></p>
+        {% if view.pay_per_min > 0 %}
+            <p>So far you earned for waiting: <span class="label label-primary timers "
+                                                    id="sec_earned_span"></span></p>
+        {% endif %}
+    </div>
+    {% if view.wait_before_leave >= 0 %}
+        <div id="otree-timeout-warning" class="alert alert-warning" style="display:block;">
+            <p>You can finish the study if nobody arrives in:
+                <span class="glyphicon glyphicon-time"></span>
+                <strong><span id="otree-timer__time-left"></span></strong>
+            </p>
+        </div>
 
-      </form>
+        <form action="" method="post" role="form" class="form">
+            {% csrf_token %}
+            <div class="finish_study_div">
+                <div id="part_fee_info" class="alert alert-danger" role="alert">
+                    <b>If you click 'Finish the study' you still will receive your participant fee plus everything you
+                        have earned by waiting.</b>
+                </div>
+                <button class="btn btn-primary" id='finish_study'
 
+                        name="endofgame" value="{{ player.pk }}">
+                    Finish the study
+                </button>
+            </div>
+            <br>
+        </form>
+    {% endif %}
 {% endblock %}
 
 {% block scripts %}
-  {% include 'information_cascades_urns/waiting_page_channel.js.html' %}
+    {% include 'information_cascades_urns/waiting_page_channel.js.html' %}
+    {% if view.wait_before_leave >= 0 %}
+        <script src="{% static 'otree/js/jquery.countdown.min.js' %}"></script>
+        <script type="text/javascript">
+            var currentDate = new Date();
+            var milliseconds = Math.floor({{time_left|json }} * 1000
+            )
+            ;
+            $('div#otree-timeout-warning').show();
+            $('span#otree-timer__time-left').countdown(currentDate.valueOf() + milliseconds)
+                .on('update.countdown', function (event) {
+                    // %-N is "Total count of minutes till the end, non-padded"
+                    // %S is seconds left
+                    var format = '%-N:%S';
+                    var remainingTime = event.strftime(format);
+                    $(this).html(remainingTime);
+
+                    if (event.strftime('%-M') > 30) {
+                        // Do not show if max waiting time is above 30 minutes
+                        $('div#otree-timeout-warning').filter(":visible").hide(duration = 0);
+                    }
+                    ;
+                })
+                .on('finish.countdown', function (event) {
+                    $('div#otree-timeout-warning').hide(duration = 0);
+                    $('.finish_study_div').show();
+                });
+        </script>
+    {% endif %}
+
+    <script>
+
+        function fancyTimeFormat(time) {
+            // Hours, minutes and seconds
+            var hrs = ~~(time / 3600);
+            var mins = ~~((time % 3600) / 60);
+            var secs = time % 60;
+
+            // Output like "1:01" or "4:03:59" or "123:03:59"
+            var ret = "";
+
+            if (hrs > 0) {
+                ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+            }
+
+            ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+            ret += "" + secs;
+            return ret;
+        };
+        var sec_spent =  {{ player.sec_spent }};
+        var sec_earned = {{ player.sec_earned }};
+        var pay_per_sec = {{ view.pay_per_min }};
+        $(function () {
+            update_spans();
+            window.setInterval(function () {
+                sec_spent += 1;
+                update_spans();
+            }, 1000);
+        });
+
+        function update_spans() {
+            sec_earned = (sec_spent / 60 * pay_per_sec).toFixed(2)
+            curtime_spent = fancyTimeFormat(Math.round(sec_spent));
+            $('#sec_spent_span').html(curtime_spent);
+            $('#sec_earned_span').html('$' + sec_earned);
+        }
+
+    </script>
+{% endblock %}
+
+{% block styles %}
+    <style>
+        {% if view.wait_before_leave >= 0 %}
+            .finish_study_div {
+                display: none;
+            }
+        {%  endif %}
+
+        span.timers {
+            font-size: 120%;
+        }
+
+        .waiting_block {
+            margin-top: 10px
+        }
+    </style>
+
 {% endblock %}
