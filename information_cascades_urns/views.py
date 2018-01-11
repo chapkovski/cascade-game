@@ -10,6 +10,9 @@ from random import choice
 class WaitingRoom(Page):
     def is_displayed(self):
         return self.subsession.round_number == 1 and self.subsession.room_busy
+    def vars_for_template(self):
+        return({'index_in_pages': self._index_in_pages})
+
 
 
 class Choose(Page):
@@ -43,13 +46,13 @@ class Choose(Page):
         ch_group_list = channel_layer.group_channels(channel_name)
         if len(ch_group_list) > 0:
             if isinstance(ch_group_list, list):
-                curchname = ch_group_list[0]
+                curname = ch_group_list[0]
             elif isinstance(ch_group_list, dict):
                 curname = next(iter(ch_group_list.keys()))
             else:
                 return None
 
-            mychannel = channels.Channel(curchname)
+            mychannel = channels.Channel(curname)
             mychannel.send( {'text': json.dumps(
                     {'status': 'ready'})}
                     )

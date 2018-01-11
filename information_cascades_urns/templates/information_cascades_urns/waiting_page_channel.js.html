@@ -1,7 +1,7 @@
 <script>
 window.onload = function() {
   var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-  var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/first_wp/{{subsession.id}},{{view.index_in_pages}}");
+  var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/first_wp/{{subsession.id}},{{index_in_pages}}");
 
   // Handle any errors that occur.
   wpsocket.onerror = function(error) {
