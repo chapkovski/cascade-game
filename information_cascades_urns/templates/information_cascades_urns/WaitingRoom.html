@@ -20,23 +20,25 @@
                 <strong><span id="otree-timer__time-left"></span></strong>
             </p>
         </div>
-
-        <form action="" method="post" role="form" class="form">
-            {% csrf_token %}
-            <div class="finish_study_div">
-                <div id="part_fee_info" class="alert alert-danger" role="alert">
-                    <b>If you click 'Finish the study' you still will receive your participant fee plus everything you
-                        have earned by waiting.</b>
-                </div>
-                <button class="btn btn-primary" id='finish_study'
-
-                        name="endofgame" value="{{ player.pk }}">
-                    Finish the study
-                </button>
-            </div>
-            <br>
-        </form>
     {% endif %}
+
+    <form action="" method="post" role="form" class="form">
+        {% csrf_token %}
+        {% if view.wait_before_leave >= 0 %}
+        <div class="finish_study_div">
+            <div id="part_fee_info" class="alert alert-danger" role="alert">
+                <b>If you click 'Finish the study' you still will receive your participant fee plus everything you
+                    have earned by waiting.</b>
+            </div>
+            <button class="btn btn-primary" id='finish_study'
+
+                    name="endofgame" value="{{ player.pk }}">
+                Finish the study
+            </button>
+        </div>
+         {% endif %}
+    </form>
+
 {% endblock %}
 
 {% block scripts %}

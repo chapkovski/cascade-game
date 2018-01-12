@@ -138,7 +138,7 @@ SESSION_CONFIGS = [
         'num_demo_participants': 100,
         'app_sequence': ['information_cascades_urns'],
         'pay_per_min': .2,
-        'wait_before_leave': -1,
+        'wait_before_leave': 10,
     },
 ]
 
