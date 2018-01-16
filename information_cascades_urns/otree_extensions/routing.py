@@ -1,5 +1,5 @@
 from channels.routing import route
-from .consumers import ws_message, ws_connect, ws_disconnect
+from information_cascades_urns.consumers import ws_message, ws_connect, ws_disconnect
 from otree.channels.routing import channel_routing
 from channels.routing import include, route_class
 print("TEST ROUTING")

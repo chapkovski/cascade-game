@@ -6,7 +6,7 @@ from boto.mturk import qualification
 
 import otree.settings
 
-CHANNEL_ROUTING = 'information_cascades_urns.routing.channel_routing'
+# CHANNEL_ROUTING = 'information_cascades_urns.routing.channel_routing'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
